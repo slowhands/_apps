@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mosaic Slide Control</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- STYLESHEETS -->
+        <link rel="stylesheet" href="../css_library/normalize.css">
+        <link rel="stylesheet" href="../css_library/main.css">
+        <link rel="stylesheet" href="../css_library/foundation.min.css">
+        
+        <!-- MODERNIZR -->
+        <script src="../js_library/modernizr-2.6.2.min.js"></script>
+        
+        <style>
+            
+            .wrapper{
+                margin-top:50px;
+            }
+            
+            .column, .columns{
+                border: dotted 1px #e2e2e2;
+                min-height:100px;
+                padding:0;
+            }
+        
+            .mosaic{
+                width:100%;
+                background-color:#7fb6ff;
+                height:799px;
+                overflow-x:hidden;
+            }
+            
+            .mosaic .viewport{
+                width:400%;
+                background-color:#ccc;
+                height:100px;
+            }
+            
+            .mosaic section{
+                width:25%;
+                float:left;
+                border:dotted 1px black;
+                padding:1em;
+            }
+            
+            
+        </style>
+        
+        
+    </head>
+    <body>
+        
+        <div class="wrapper">
+            
+            <div class="row">
+                
+                <div class="three columns" style="padding: 0 .5em 0 0;">
+                    <dl class="vertical tabs">
+                        <dd class="active"><a href="#vertical1">Vertical Tab 1</a></dd>
+                        <dd><a href="#vertical2">Vertical Tab 2</a></dd>
+                        <dd><a href="#vertical3">Vertical Tab 3</a></dd>
+                        <dd><a href="#vertical3">Vertical Tab 3</a></dd>
+                    </dl>
+                </div>
+                
+                <div class="eight columns mosaic" id="panel">
+                    <div class="viewport">
+                        <section>1</section>
+                        <section>2</section>
+                        <section>3</section>
+                        <section>4</section>
+                    </div>
+                </div>
+                
+                <div class="one column">
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+
+        
+        <!-- JAVASCRIPT -->
+        <script src="../js_library/jquery-1.9.1.min.js"></script>
+        <script src="../js_library/foundation.min.js"></script>
+        
+        <script>
+            
+        
+            var mosaic_scroll = function(factor){
+                var scroll_factor = factor * $('.mosaic').width();
+                $(".mosaic").animate({scrollLeft:scroll_factor},500);
+            }
+            
+            $("dd").click(function(e){
+                e.preventDefault();
+                var factor = $(this).index();
+                var $tab = $(this);
+                mosaic_scroll(factor);
+                $("dd.active").removeClass("active");
+                $(this).addClass("active");
+            });
+            
+        </script>
+        
+
+    </body>
+</html>
